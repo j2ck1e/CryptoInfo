@@ -1,4 +1,4 @@
-package com.jcdesign.cryptoinfo.api
+package com.jcdesign.cryptoinfo.data.network
 
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

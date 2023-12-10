@@ -1,14 +1,14 @@
-package com.jcdesign.cryptoinfo
+package com.jcdesign.cryptoinfo.presentation
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.google.gson.Gson
-import com.jcdesign.cryptoinfo.api.ApiFactory
-import com.jcdesign.cryptoinfo.database.AppDataBase
-import com.jcdesign.cryptoinfo.pojo.CoinPriceInfo
-import com.jcdesign.cryptoinfo.pojo.CoinPriceInfoRawData
+import com.jcdesign.cryptoinfo.data.network.ApiFactory
+import com.jcdesign.cryptoinfo.data.database.AppDataBase
+import com.jcdesign.cryptoinfo.data.model.CoinPriceInfo
+import com.jcdesign.cryptoinfo.data.model.CoinPriceInfoRawData
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit

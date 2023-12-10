@@ -1,11 +1,11 @@
-package com.jcdesign.cryptoinfo.database
+package com.jcdesign.cryptoinfo.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.jcdesign.cryptoinfo.pojo.CoinPriceInfo
+import com.jcdesign.cryptoinfo.data.model.CoinPriceInfo
 
 
 @Dao

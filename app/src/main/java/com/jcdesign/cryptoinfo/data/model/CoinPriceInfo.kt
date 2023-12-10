@@ -1,10 +1,10 @@
-package com.jcdesign.cryptoinfo.pojo
+package com.jcdesign.cryptoinfo.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.jcdesign.cryptoinfo.api.ApiFactory.BASE_IMAGE_URL
+import com.jcdesign.cryptoinfo.data.network.ApiFactory.BASE_IMAGE_URL
 import com.jcdesign.cryptoinfo.utils.convertTimestampToTime
 
 @Entity("full_price_list")

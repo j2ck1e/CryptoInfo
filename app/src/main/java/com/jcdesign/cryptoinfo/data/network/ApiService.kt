@@ -1,7 +1,7 @@
-package com.jcdesign.cryptoinfo.api
+package com.jcdesign.cryptoinfo.data.network
 
-import com.jcdesign.cryptoinfo.pojo.CoinInfoListOfData
-import com.jcdesign.cryptoinfo.pojo.CoinPriceInfoRawData
+import com.jcdesign.cryptoinfo.data.model.CoinInfoListOfData
+import com.jcdesign.cryptoinfo.data.model.CoinPriceInfoRawData
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

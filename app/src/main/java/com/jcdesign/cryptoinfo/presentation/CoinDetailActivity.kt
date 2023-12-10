@@ -1,4 +1,4 @@
-package com.jcdesign.cryptoinfo
+package com.jcdesign.cryptoinfo.presentation
 
 import android.content.Context
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.jcdesign.cryptoinfo.R
 import com.squareup.picasso.Picasso
 
 class CoinDetailActivity : AppCompatActivity() {
