@@ -6,7 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.jcdesign.cryptoinfo.R
 import com.jcdesign.cryptoinfo.presentation.adapters.CoinInfoAdapter
-import com.jcdesign.cryptoinfo.data.model.CoinPriceInfo
+import com.jcdesign.cryptoinfo.data.network.model.CoinInfoDto
+import com.jcdesign.cryptoinfo.domain.CoinInfo
 
 class CoinPriceListActivity : AppCompatActivity() {
 
@@ -17,7 +18,7 @@ class CoinPriceListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_coin_price_list)
         val adapter = CoinInfoAdapter(this)
         adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener{
-            override fun onCoinClick(coinPriceInfo: CoinPriceInfo) {
+            override fun onCoinClick(coinPriceInfo: CoinInfo) {
                 val intent = CoinDetailActivity.newIntent(
                     this@CoinPriceListActivity,
                     coinPriceInfo.fromSymbol
@@ -29,7 +30,7 @@ class CoinPriceListActivity : AppCompatActivity() {
         rvCoinPriceList.adapter = adapter
         viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
 
-        viewModel.priceList.observe(this) {
+        viewModel.coinInfoList.observe(this) {
             adapter.coinInfoList = it
         }
 

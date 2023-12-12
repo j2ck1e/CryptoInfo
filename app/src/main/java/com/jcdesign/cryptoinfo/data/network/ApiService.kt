@@ -1,26 +1,25 @@
 package com.jcdesign.cryptoinfo.data.network
 
-import com.jcdesign.cryptoinfo.data.model.CoinInfoListOfData
-import com.jcdesign.cryptoinfo.data.model.CoinPriceInfoRawData
-import io.reactivex.Single
+import com.jcdesign.cryptoinfo.data.network.model.CoinNamesListDto
+import com.jcdesign.cryptoinfo.data.network.model.CoinInfoJsonContainerDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
     @GET("top/totalvolfull")
-    fun getTopCoinsInfo(
+    suspend fun getTopCoinsInfo(
         @Query(QUERY_API_KEY) apiKey: String = MY_API_KEY,
         @Query(QUERY_PARAM_LIMIT) limit: Int = 50,
         @Query(QUERY_PARAM_TO_SYMBOL) tsym: String = CURRENCY
-    ) : Single<CoinInfoListOfData>
+    ) : CoinNamesListDto
 
     @GET("pricemultifull")
-    fun getFullPriceList(
+    suspend fun getFullPriceList(
         @Query(QUERY_API_KEY) apiKey: String = MY_API_KEY,
         @Query(QUERY_PARAM_FROM_SYMBOLS) fSyms: String,
         @Query(QUERY_PARAM_TO_SYMBOLS) tSyms: String = CURRENCY
 
-    ) : Single<CoinPriceInfoRawData>
+    ) : CoinInfoJsonContainerDto
 
     companion object{
         private const val MY_API_KEY = "a4a11f52fabe4d4059a2b69a154f2d348b20cb2b5525201cd86103273611d60b"

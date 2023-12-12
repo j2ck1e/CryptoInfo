@@ -1,12 +1,12 @@
-package com.jcdesign.cryptoinfo.data.model
+package com.jcdesign.cryptoinfo.data.network.model
 
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class CoinInfoListOfData(
+data class CoinNamesListDto(
     @SerializedName("Data")
     @Expose
-    val data: List<Datum>?
+    val names: List<CoinNameContainerDto>?
 
     )
