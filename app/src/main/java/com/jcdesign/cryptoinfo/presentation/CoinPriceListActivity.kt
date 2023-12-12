@@ -3,21 +3,22 @@ package com.jcdesign.cryptoinfo.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
-import com.jcdesign.cryptoinfo.R
-import com.jcdesign.cryptoinfo.presentation.adapters.CoinInfoAdapter
-import com.jcdesign.cryptoinfo.data.network.model.CoinInfoDto
+import com.jcdesign.cryptoinfo.databinding.ActivityCoinPriceListBinding
 import com.jcdesign.cryptoinfo.domain.CoinInfo
+import com.jcdesign.cryptoinfo.presentation.adapters.CoinInfoAdapter
 
 class CoinPriceListActivity : AppCompatActivity() {
 
     private lateinit var viewModel: CoinViewModel
+    private val binding by lazy {
+        ActivityCoinPriceListBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_coin_price_list)
+        setContentView(binding.root)
         val adapter = CoinInfoAdapter(this)
-        adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener{
+        adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener {
             override fun onCoinClick(coinPriceInfo: CoinInfo) {
                 val intent = CoinDetailActivity.newIntent(
                     this@CoinPriceListActivity,
@@ -26,8 +27,8 @@ class CoinPriceListActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-        val rvCoinPriceList = findViewById<RecyclerView>(R.id.rv_coinPriceList)
-        rvCoinPriceList.adapter = adapter
+
+        binding.rvCoinPriceList.adapter = adapter
         viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
 
         viewModel.coinInfoList.observe(this) {
