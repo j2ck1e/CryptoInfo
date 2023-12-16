@@ -3,6 +3,7 @@ package com.jcdesign.cryptoinfo.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.jcdesign.cryptoinfo.R
 import com.jcdesign.cryptoinfo.databinding.ActivityCoinPriceListBinding
 import com.jcdesign.cryptoinfo.domain.CoinInfo
 import com.jcdesign.cryptoinfo.presentation.adapters.CoinInfoAdapter
@@ -20,11 +21,11 @@ class CoinPriceListActivity : AppCompatActivity() {
         val adapter = CoinInfoAdapter(this)
         adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener {
             override fun onCoinClick(coinPriceInfo: CoinInfo) {
-                val intent = CoinDetailActivity.newIntent(
-                    this@CoinPriceListActivity,
-                    coinPriceInfo.fromSymbol
-                )
-                startActivity(intent)
+                if (isOnePainMode()) {
+                    launchDetailActivity(coinPriceInfo.fromSymbol)
+                } else {
+                    launchDetailFragment(coinPriceInfo.fromSymbol)
+                }
             }
         }
 
@@ -37,5 +38,24 @@ class CoinPriceListActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun isOnePainMode() = binding.fragmentContainer == null
+
+    private fun launchDetailActivity(fromSymbol: String) {
+        val intent = CoinDetailActivity.newIntent(
+            this@CoinPriceListActivity,
+            fromSymbol
+        )
+        startActivity(intent)
+    }
+
+    private fun launchDetailFragment(fromSymbol: String) {
+        supportFragmentManager.popBackStack()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, CoinDetailFragment.newInstance(fromSymbol))
+            .addToBackStack(null)
+            .commit()
     }
 }

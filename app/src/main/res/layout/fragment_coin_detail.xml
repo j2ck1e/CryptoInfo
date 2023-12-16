@@ -88,6 +88,7 @@
                 android:layout_marginStart="8dp"
                 android:textColor="#000"
                 android:textSize="16sp"
+                android:maxLength="6"
                 app:layout_constraintStart_toEndOf="@id/tvPriceLabel"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="7352.5" />
@@ -120,6 +121,7 @@
                 android:layout_marginTop="16dp"
                 android:textColor="@android:color/holo_red_dark"
                 android:textSize="16sp"
+                android:maxLength="6"
                 app:layout_constraintStart_toEndOf="@id/tvMinPriceLabel"
                 app:layout_constraintTop_toBottomOf="@id/tvPriceLabel"
                 tools:text="7110.0" />
@@ -152,6 +154,7 @@
                 android:layout_marginTop="16dp"
                 android:textColor="@android:color/holo_green_dark"
                 android:textSize="16sp"
+                android:maxLength="6"
                 app:layout_constraintStart_toEndOf="@id/tvMaxPriceLabel"
                 app:layout_constraintTop_toBottomOf="@id/tvMinPriceLabel"
                 tools:text="7820.1" />
