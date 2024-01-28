@@ -1,18 +1,12 @@
 package com.jcdesign.cryptoinfo.presentation
 
-import android.content.Context
-import android.content.Intent
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.jcdesign.cryptoinfo.R
-import com.jcdesign.cryptoinfo.databinding.ActivityCoinDetailBinding
 import com.jcdesign.cryptoinfo.databinding.FragmentCoinDetailBinding
 import com.squareup.picasso.Picasso
 
