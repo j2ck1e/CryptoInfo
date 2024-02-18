@@ -5,19 +5,21 @@ import androidx.work.CoroutineWorker
 import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
-import com.jcdesign.cryptoinfo.data.database.AppDataBase
+import com.jcdesign.cryptoinfo.data.database.CoinInfoDao
 import com.jcdesign.cryptoinfo.data.mapper.CoinMapper
-import com.jcdesign.cryptoinfo.data.network.ApiFactory
+import com.jcdesign.cryptoinfo.data.network.ApiFactory.apiService
+import com.jcdesign.cryptoinfo.data.network.ApiService
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 
-class RefreshDataWorker(
+class RefreshDataWorker (
     context: Context,
-    workerParameters: WorkerParameters
+    workerParameters: WorkerParameters,
+    private val coinInfoDao: CoinInfoDao,
+    private val apiService: ApiService,
+    private val mapper: CoinMapper
 ) : CoroutineWorker(context, workerParameters) {
 
-    private val coinInfoDao = AppDataBase.getInstance(context).coinPriceInfoDao()
-    private val apiService = ApiFactory.apiService
-    private val mapper = CoinMapper()
 
     override suspend fun doWork(): Result {
         while (true) {
@@ -34,11 +36,23 @@ class RefreshDataWorker(
             delay(10000)
         }
     }
-    companion object{
+
+    companion object {
         const val NAME = "RefreshDataWorker"
 
-        fun workRequest(): OneTimeWorkRequest{
+        fun workRequest(): OneTimeWorkRequest {
             return OneTimeWorkRequestBuilder<RefreshDataWorker>().build()
         }
+    }
+
+    class Factory @Inject constructor(
+        private val coinInfoDao: CoinInfoDao,
+        private val apiService: ApiService,
+        private val mapper: CoinMapper
+    ) : ChildWorkerFactory {
+        override fun create(context: Context, workerParameters: WorkerParameters): RefreshDataWorker {
+            return RefreshDataWorker(context, workerParameters, coinInfoDao, apiService, mapper)
+        }
+
     }
 }

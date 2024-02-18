@@ -12,9 +12,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class CoinViewModel @Inject constructor(
-    private val getCoinInfoListUseCase: GetCoinInfoListUseCase,
+    getCoinInfoListUseCase: GetCoinInfoListUseCase,
     private val getCoinInfoUseCase: GetCoinInfoUseCase,
-    private val loadDataUseCase: LoadDataUseCase,
+    loadDataUseCase: LoadDataUseCase,
 ) : ViewModel() {
 
 
